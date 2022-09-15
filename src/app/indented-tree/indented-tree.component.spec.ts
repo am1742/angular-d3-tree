@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IndentedTreeComponent } from './indented-tree.component';
 
@@ -6,7 +6,7 @@ describe('IndentedTreeComponent', () => {
   let component: IndentedTreeComponent;
   let fixture: ComponentFixture<IndentedTreeComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ IndentedTreeComponent ]
     })
