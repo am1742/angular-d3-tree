@@ -40,13 +40,13 @@ export class IndentedTreeComponentD3ToAngComp implements OnInit, AfterViewInit {
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-    this.renderTreeChart(event);
+    this.renderTreeChart();
   }
   getSelectedItem(d) {
     this.name = d.data.name;;
   }
 
-  renderTreeChart(event) {
+  renderTreeChart() {
 
     this.element = this.chartContainer.nativeElement;
     this.svg = d3.select(this.element).append("svg")
@@ -68,8 +68,8 @@ export class IndentedTreeComponentD3ToAngComp implements OnInit, AfterViewInit {
     // open close context menu
     d3.select("body").on("click.context-menu-g", function () {
 
-      console.log("data-type", event.target.getAttribute('data-type'));
-      if (event.target.getAttribute('data-type') !== 'contextMenu') {
+      console.log("data-type", d3.event.target.getAttribute('data-type'));
+      if (d3.event.target.getAttribute('data-type') !== 'contextMenu') {
         d3.selectAll(".context-menu-g").style('display', 'none');
       }
 
@@ -491,7 +491,7 @@ export class IndentedTreeComponentD3ToAngComp implements OnInit, AfterViewInit {
 
   mouseup(d) {}
 
-  contextmenu(d,event) {
+  contextmenu(d) {
     let contextMenu = d3.selectAll(".context-menu-g");
     contextMenu.transition()
       .duration(this.duration)
@@ -499,7 +499,7 @@ export class IndentedTreeComponentD3ToAngComp implements OnInit, AfterViewInit {
 
     d3.selectAll(".context-menu-g").style('display', 'none');
     d3.select('#nodeContextMenuGroup' + d.id).style('display', 'block');
-    event.preventDefault();
+    d3.event.preventDefault();
   }
 
 }
